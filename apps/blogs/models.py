@@ -12,13 +12,21 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
-    def createHash(self):
+    def create_password_hash(self):
         self.password = bcrypt.hashpw(self.password.encode(), bcrypt.gensalt()).decode('utf-8')
         return
 
-    def verifyHash(self, inputPassword):
-        pass
-        return
+    def verify_password_hash(self, inputPassword):
+        return bcrypt.checkpw(inputPassword.encode(), self.password.encode())
+        
+    def create_user_hash(self):
+        string_to_hash = str(self.created_at) + 'justDontBruh'
+        return bcrypt.hashpw(string_to_hash.encode(), bcrypt.gensalt()).decode('utf-8')
+
+    def verify_user_hash(self, target_hash):
+        secret_salt = str(self.created_at) + 'justDontBruh'
+        return bcrypt.checkpw(secret_salt.encode(), target_hash.encode())
+
 
 class UserForm(forms.Form):
     full_name = forms.CharField(max_length = 100)

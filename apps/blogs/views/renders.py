@@ -29,10 +29,10 @@ def contact(request):
     }
     return render(request, 'blogs/index.html', context)
 
-def login(request):
+def signin(request):
     context = {
-        'ROUTE': 'blogs/pages/login.html',
-        'CSS_ROUTE': 'blogs/css/login.css'
+        'ROUTE': 'blogs/pages/signin.html',
+        'CSS_ROUTE': 'blogs/css/signin.css'
     }
     return render(request, 'blogs/index.html', context)
 

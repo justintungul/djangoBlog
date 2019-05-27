@@ -8,11 +8,13 @@ urlpatterns = [
     url(r'^about$', renders.about),
     url(r'^post$', renders.post),
     url(r'^contact$', renders.contact),
-    url(r'^login$', renders.login),
+    url(r'^signin$', renders.signin),
     url(r'^register$', renders.register),
 
     # submit routes
     url(r'^register/submit$', users.create_user),
+    url(r'^signin/user$', users.signin_user),
+    url(r'^logout$', users.logout),
 
     # render routes
     # url(r'^$', views.index, name='index'),
