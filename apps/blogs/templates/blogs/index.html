@@ -22,12 +22,15 @@
   
   <!-- Custom styles for this template -->
   <link href="{% static 'blogs/css/clean-blog.css' %}" rel="stylesheet">
+  {% if CSS_ROUTE %}
+    <link href="{% static CSS_ROUTE %}" rel="stylesheet">
+  {% endif %}
 
 </head>
 
 <body>
     {% include "blogs/components/navbar.html" %}
-    {% include route %}
+    {% include ROUTE %}
     {% include "blogs/components/footer.html" %}
     {% include "blogs/components/bottom-scripts.html" %}
 </body>

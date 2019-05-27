@@ -9,30 +9,31 @@ def index(request):
     #     'projects': Project.objects.all()
     # }
     context = {
-        'route': 'blogs/pages/home.html'
+        'ROUTE': 'blogs/pages/home.html'
     }
     return render(request, 'blogs/index.html', context)
 
 def about(request):
     context = {
-        'route': 'blogs/pages/about.html'
+        'ROUTE': 'blogs/pages/about.html'
     }
     return render(request, 'blogs/index.html', context)
 
 def post(request):
     context = {
-        'route': 'blogs/pages/post.html'
+        'ROUTE': 'blogs/pages/post.html'
     }
     return render(request, 'blogs/index.html', context)
 
 def contact(request):
     context = {
-        'route': 'blogs/pages/contact.html'
+        'ROUTE': 'blogs/pages/contact.html'
     }
     return render(request, 'blogs/index.html', context)
 
 def login(request):
     context = {
-        'route': 'blogs/pages/login.html'
+        'ROUTE': 'blogs/pages/login.html',
+        'CSS_ROUTE': 'blogs/css/login.css'
     }
     return render(request, 'blogs/index.html', context)
