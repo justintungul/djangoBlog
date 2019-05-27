@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^about$', users.about),
     url(r'^post$', users.post),
     url(r'^contact$', users.contact),
+    url(r'^login$', users.login),
     # # render routes
     # url(r'^$', views.index, name='index'),
     # url(r'^project/(?P<proj_id>\d+)$', views.proj_timeline),
