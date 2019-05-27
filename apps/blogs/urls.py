@@ -1,14 +1,20 @@
 from django.conf.urls import url
 from .views import users
+from .views import renders
 
 urlpatterns = [
-    url(r'^$', users.index),
-    url(r'^about$', users.about),
-    url(r'^post$', users.post),
-    url(r'^contact$', users.contact),
-    url(r'^login$', users.login),
-    url(r'^register$', users.register),
-    # # render routes
+    # render routes
+    url(r'^$', renders.index),
+    url(r'^about$', renders.about),
+    url(r'^post$', renders.post),
+    url(r'^contact$', renders.contact),
+    url(r'^login$', renders.login),
+    url(r'^register$', renders.register),
+
+    # submit routes
+    url(r'^register/submit$', users.create_user),
+
+    # render routes
     # url(r'^$', views.index, name='index'),
     # url(r'^project/(?P<proj_id>\d+)$', views.proj_timeline),
     # url(r'^project/(?P<proj_id>\d+)/timeline$', views.proj_timeline),
