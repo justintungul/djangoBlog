@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="page-heading">
-          <h1>Sign in</h1>
+          <h1>Register</h1>
           <span class="subheading">You're always welcome.</span>
         </div>
       </div>
@@ -18,8 +18,15 @@
 <!-- Main Content -->
 <div class="container">
   <div class="row">
-    <div class="col-lg-7 col-md-9 mx-auto popout-modal">
+    <div class="col-lg-9 col-md-11 mx-auto popout-modal">
       <form name="sentMessage" id="contactForm" novalidate>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Name</label>
+            <input type="text" class="form-control" placeholder="Full Name" id="name" required data-validation-required-message="Please enter your full name.">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
         <div class="control-group">
           <div class="form-group floating-label-form-group controls">
             <label>Email Address</label>
@@ -37,14 +44,9 @@
         <br>
         <div id="success"></div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary" id="sendMessageButton">Sign in</button>
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Submit</button>
         </div>
       </form>
-    </div>
-    <div class="col-12 text-center">
-      <span>
-        <a href="/register" class="text-decoration-none sub-header register-link">or register</a>
-      </span>
     </div>
   </div>
 </div>

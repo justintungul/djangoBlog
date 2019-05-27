@@ -27,7 +27,8 @@ def post(request):
 
 def contact(request):
     context = {
-        'ROUTE': 'blogs/pages/contact.html'
+        'ROUTE': 'blogs/pages/contact.html',
+        'CSS_ROUTE': 'blogs/css/contact.css'
     }
     return render(request, 'blogs/index.html', context)
 
@@ -37,3 +38,11 @@ def login(request):
         'CSS_ROUTE': 'blogs/css/login.css'
     }
     return render(request, 'blogs/index.html', context)
+
+def register(request):
+    context = {
+        'ROUTE': 'blogs/pages/register.html',
+        'CSS_ROUTE': 'blogs/css/register.css'
+    }
+    return render(request, 'blogs/index.html', context)
+    
