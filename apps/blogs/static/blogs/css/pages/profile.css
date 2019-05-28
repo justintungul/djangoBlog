@@ -1,0 +1,24 @@
+.sidenav {
+    padding-top: 30px;
+}
+
+.sidenav ul {
+    list-style-type: none;
+}
+
+.sidenav ul ul {
+    padding-left: 20px;
+}
+
+.sidenav li {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.sidenav a {
+    display: block;
+    padding: 10px 20px;
+}
+
+.sidenav a:hover {
+    text-decoration: none;
+}

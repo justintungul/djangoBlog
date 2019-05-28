@@ -7,9 +7,11 @@ urlpatterns = [
     url(r'^$', renders.index),
     url(r'^about$', renders.about),
     url(r'^post$', renders.post),
+    url(r'^post/new$', renders.post_new),
     url(r'^contact$', renders.contact),
     url(r'^signin$', renders.signin),
     url(r'^register$', renders.register),
+    url(r'^profile$', renders.profile),
 
     # submit routes
     url(r'^register/submit$', users.create_user),
