@@ -13,7 +13,6 @@ def create_user(request):
             user.save()
             return redirect('/')
         else:
-            pass
             # render form with errors
             request.session['data'] = {'error': 'error'}
             return renders.register(request)

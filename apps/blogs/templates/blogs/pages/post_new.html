@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="page-heading small">
-          <h2>Profile</h2>
+          <h2>Create a New Post</h2>
         </div>
       </div>
     </div>
@@ -17,51 +17,40 @@
 <!-- Main Content -->
 <div class="container">
   <div class="row">
-    <div class="sidenav col-md-4 d-none d-md-block d-lg-block">
-      <ul>
-        <li><a href="#">Posts</a>
-        <ul>
-          <li><a href="/post/new">+ New Post</a>
-        </ul>
-        <li><a href="#">Following</a>
-      </ul>
-    </div>
-    <div class="col-md-8">
-      <div class="post-preview">
-        <a href="post.html">
-          <h2 class="post-title">
-            Man must explore, and this is exploration at its greatest
-          </h2>
-          <h3 class="post-subtitle">
-            Problems look mighty small from 150 miles up
-          </h3>
-        </a>
-        <p class="post-meta">September 24, 2019
+
+    <form class="col-12" action="/post/submit" method="POST">
+      {% csrf_token %}
+
+      <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+          <label>Title</label>
+          <input name="title" type="text" class="form-control" placeholder="Title" required>
+          <p class="help-block text-danger"></p>
+        </div>
       </div>
-      <hr>
-      <div class="post-preview">
-        <a href="post.html">
-          <h2 class="post-title">
-            Man must explore, and this is exploration at its greatest
-          </h2>
-          <h3 class="post-subtitle">
-            Problems look mighty small from 150 miles up
-          </h3>
-        </a>
-        <p class="post-meta">September 24, 2019
+
+      <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+          <label>Headline</label>
+          <input name="headline" type="text" class="form-control" placeholder="Headline" required>
+          <p class="help-block text-danger"></p>
+        </div>
       </div>
-      <hr>
-      <div class="post-preview">
-        <a href="post.html">
-          <h2 class="post-title">
-            Man must explore, and this is exploration at its greatest
-          </h2>
-          <h3 class="post-subtitle">
-            Problems look mighty small from 150 miles up
-          </h3>
-        </a>
-        <p class="post-meta">September 24, 2019
+
+      <div class="control-group">
+        <div class="form-group controls">
+          <textarea id="post_form" name="body" class="form-control" placeholder="Body" required></textarea>
+          <p class="help-block text-danger"></p>
+        </div>
       </div>
-    </div>
+
+      <br>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary float-right">Publish</button>
+      </div>
+
+    </form>
+
   </div>
 </div>

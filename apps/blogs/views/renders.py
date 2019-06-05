@@ -1,9 +1,14 @@
 from django.shortcuts import render
 from . import users
+from ..models import Post
 
 def index(request):
+    posts = Post.objects.all()
     context = {
-        'ROUTE': 'blogs/pages/home.html'
+        'ROUTE': 'blogs/pages/home.html',
+        'data': {
+            'posts': posts
+        }
     }
     # get all blogs
     # add to context
@@ -25,7 +30,8 @@ def post(request):
 def post_new(request):
     context = {
         'ROUTE': 'blogs/pages/post_new.html',
-        'CSS_ROUTE': 'blogs/css/pages/post_new.css'
+        'CSS_ROUTE': 'blogs/css/pages/post_new.css',
+        'JS_ROUTE': 'blogs/js/post_new.js',
     }
     return render(request, 'blogs/index.html', context)
 

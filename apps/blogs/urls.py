@@ -1,22 +1,26 @@
 from django.conf.urls import url
 from .views import users
+from .views import posts
 from .views import renders
 
 urlpatterns = [
     # render routes
     url(r'^$', renders.index),
     url(r'^about$', renders.about),
-    url(r'^post$', renders.post),
-    url(r'^post/new$', renders.post_new),
     url(r'^contact$', renders.contact),
-    url(r'^signin$', renders.signin),
-    url(r'^register$', renders.register),
     url(r'^profile$', renders.profile),
 
-    # submit routes
+    # user routes
+    url(r'^register$', renders.register),
     url(r'^register/submit$', users.create_user),
+    url(r'^signin$', renders.signin),
     url(r'^signin/user$', users.signin_user),
     url(r'^logout$', users.logout),
+
+    # post
+    url(r'^post$', renders.post),
+    url(r'^post/new$', renders.post_new),
+    url(r'^post/submit$', posts.create_post),
 
     # render routes
     # url(r'^$', views.index, name='index'),

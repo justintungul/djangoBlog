@@ -3,6 +3,16 @@ from django import forms
 
 import bcrypt
 
+class UserForm(forms.Form):
+    full_name = forms.CharField(max_length = 100)
+    email = forms.EmailField(max_length = 100)
+    password = forms.CharField(max_length = 32, min_length = 8)
+
+class PostForm(forms.Form):
+    title = forms.CharField(max_length = 255)
+    headline = forms.CharField(max_length = 255)
+    body = forms.CharField()
+
 # Create your models here.
 class User(models.Model):
     # DEFAULT_ROLE = 1
@@ -27,8 +37,10 @@ class User(models.Model):
         secret_salt = str(self.created_at) + 'justDontBruh'
         return bcrypt.checkpw(secret_salt.encode(), target_hash.encode())
 
-
-class UserForm(forms.Form):
-    full_name = forms.CharField(max_length = 100)
-    email = forms.EmailField(max_length = 100)
-    password = forms.CharField(max_length = 32, min_length = 8)
+class Post(models.Model):
+    title = models.CharField(max_length = 255)
+    headline = models.CharField(max_length = 255)
+    body = models.TextField()
+    author = models.ForeignKey(User, related_name='posts', on_delete=models.DO_NOTHING)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
