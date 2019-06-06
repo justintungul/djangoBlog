@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="page-heading small">
-          <h2>Profile</h2>
+          <h2>{{data.user.full_name | title}}</h2>
         </div>
       </div>
     </div>
@@ -19,11 +19,7 @@
   <div class="row">
     <div class="sidenav col-md-4 d-none d-md-block d-lg-block">
       <ul>
-        <li><a href="#">Posts</a>
-        <ul>
-          <li><a href="/post/new">+ New Post</a>
-        </ul>
-        <li><a href="#">Following</a>
+        <li><a href="follow/{{data.user.id}}">Follow</a>
       </ul>
     </div>
     <div class="col-md-8">

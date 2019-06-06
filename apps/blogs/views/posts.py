@@ -10,7 +10,7 @@ def create_post(request):
             post = Post(**postForm.cleaned_data)
             post.author = User.objects.get(id = request.session['user_id'])
             post.save()
-            return redirect('/')
+            return redirect('/profile')
         else:
             request.session['data'] = {'error': 'error'}
             return renders.post_new(request)

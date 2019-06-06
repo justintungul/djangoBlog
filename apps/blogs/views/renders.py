@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from . import users
-from ..models import Post
+from ..models import *
 
 def index(request):
-    posts = Post.objects.all()
     context = {
         'ROUTE': 'blogs/pages/home.html',
         'data': {
-            'posts': posts
+            'posts': Post.objects.all().order_by('-created_at')
         }
     }
     # get all blogs
@@ -62,13 +61,34 @@ def register(request):
     print(context)
     return render(request, 'blogs/index.html', context)
 
-def profile(request):
+def profile_personal(request):
+    user = User.objects.get(id = request.session['user_id'])
+    posts = Post.objects.filter(author = user)
+    # print(posts.__dict__)
     context = {
         'ROUTE': 'blogs/pages/profile.html',
         'CSS_ROUTE': 'blogs/css/pages/profile.css',
+        'data': {
+            'posts': posts
+        }
     }
     if 'data' in request.session:
         context['data'] = request.session['data']
         del request.session['data']
+    return render(request, 'blogs/index.html', context)
+
+
+
+def profile_public(request, user_id):
+    user = User.objects.get(id = user_id)
+    posts = Post.objects.filter(author = user)
+    context = {
+        'ROUTE': 'blogs/pages/profile_public.html',
+        'CSS_ROUTE': 'blogs/css/pages/profile_public.css',
+        'data': {
+            'user': user,
+            'posts': posts
+        }
+    }
     return render(request, 'blogs/index.html', context)
     

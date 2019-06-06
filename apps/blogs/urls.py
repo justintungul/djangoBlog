@@ -8,7 +8,8 @@ urlpatterns = [
     url(r'^$', renders.index),
     url(r'^about$', renders.about),
     url(r'^contact$', renders.contact),
-    url(r'^profile$', renders.profile),
+    url(r'^profile$', renders.profile_personal),
+    url(r'^profile/(?P<user_id>\d+)$', renders.profile_public),
 
     # user routes
     url(r'^register$', renders.register),
