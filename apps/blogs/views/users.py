@@ -44,3 +44,21 @@ def logout(request):
 
     # messages.success(request, 'You\'ve been logged out successfully!')
     return redirect('/signin')
+
+def profile_follow(request, user_id):
+    user = User.objects.get(id = request.session['user_id'])
+    user_to_follow = User.objects.get(id = user_id)
+
+    user.following.add(user_to_follow)
+    user.save()
+
+    return redirect('/profile/' + user_id)
+
+def profile_unfollow(request, user_id):
+    user = User.objects.get(id = request.session['user_id'])
+    user_to_unfollow = User.objects.get(id = user_id)
+
+    user.following.remove(user_to_unfollow)
+    user.save()
+
+    return redirect('/profile/' + user_id)

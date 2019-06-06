@@ -17,6 +17,8 @@ urlpatterns = [
     url(r'^signin$', renders.signin),
     url(r'^signin/user$', users.signin_user),
     url(r'^logout$', users.logout),
+    url(r'^profile/follow/(?P<user_id>\d+)$', users.profile_follow),
+    url(r'^profile/unfollow/(?P<user_id>\d+)$', users.profile_unfollow),
 
     # post
     url(r'^post$', renders.post),

@@ -19,7 +19,11 @@
   <div class="row">
     <div class="sidenav col-md-4 d-none d-md-block d-lg-block">
       <ul>
-        <li><a href="follow/{{data.user.id}}">Follow</a>
+        {% if data.following %}
+          <li><a href="/profile/unfollow/{{data.user.id}}">Unfollow</a>
+        {% else %}
+          <li><a href="/profile/follow/{{data.user.id}}">Follow</a>
+        {% endif %}
       </ul>
     </div>
     <div class="col-md-8">

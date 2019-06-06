@@ -21,6 +21,7 @@ class User(models.Model):
     password = models.CharField(max_length = 255)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+    following = models.ManyToManyField("self", blank=True, related_name="followers", symmetrical = False)
 
     def create_password_hash(self):
         self.password = bcrypt.hashpw(self.password.encode(), bcrypt.gensalt()).decode('utf-8')
