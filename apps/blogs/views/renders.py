@@ -77,17 +77,21 @@ def profile_personal(request):
         del request.session['data']
     return render(request, 'blogs/index.html', context)
 
-
-
 def profile_public(request, user_id):
     user = User.objects.get(id = user_id)
     posts = Post.objects.filter(author = user)
+    following = False
+# 
+    if User.objects.get(id = request.session['user_id']).following.all().filter(id = user.id):
+        following = True
+
     context = {
         'ROUTE': 'blogs/pages/profile_public.html',
         'CSS_ROUTE': 'blogs/css/pages/profile_public.css',
         'data': {
             'user': user,
-            'posts': posts
+            'posts': posts,
+            'following': following
         }
     }
     return render(request, 'blogs/index.html', context)
