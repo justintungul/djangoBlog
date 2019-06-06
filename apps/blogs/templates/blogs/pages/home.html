@@ -19,8 +19,24 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
+      {% for post in data.posts %}
+        <div class="post-preview">
+          <a href="/post">
+            <h2 class="post-title">
+              {{post.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{post.headline}}
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="profile/{{post.author.id}}">{{post.author.full_name | title}}</a>
+            on {{post.created_at | date:"F t, Y"}}</p>
+        </div>
+        <hr>
+      {% endfor %}
       <div class="post-preview">
-        <a href="post.html">
+        <a href="/post">
           <h2 class="post-title">
             Man must explore, and this is exploration at its greatest
           </h2>
@@ -34,7 +50,7 @@
       </div>
       <hr>
       <div class="post-preview">
-        <a href="post.html">
+        <a href="/post">
           <h2 class="post-title">
             I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
           </h2>
@@ -45,7 +61,7 @@
       </div>
       <hr>
       <div class="post-preview">
-        <a href="post.html">
+        <a href="/post">
           <h2 class="post-title">
             Science has not yet mastered prophecy
           </h2>
@@ -59,7 +75,7 @@
       </div>
       <hr>
       <div class="post-preview">
-        <a href="post.html">
+        <a href="/post">
           <h2 class="post-title">
             Failure is not an option
           </h2>

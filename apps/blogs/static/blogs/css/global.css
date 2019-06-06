@@ -1,0 +1,39 @@
+/* Navbar */
+.nav-item .fas {
+    font-size: 25px;
+    padding: 2px 0 0 0;
+}
+
+.nav-item .dropdown-menu {
+    border-radius: 0;
+    border: none;
+    padding: 0;
+    margin-top: 8px;
+}
+
+.nav-item .dropdown-menu a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.nav-item .dropdown-item {
+    padding: 15px 20px;
+}
+
+.sub-header {
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.1;
+    display: block;
+    margin: 10px 0 0;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.page-heading.small {
+    padding: 100px 0 80px !important;
+}
+
+@media only screen and (max-width: 992px) {
+    body {
+        padding-top: 40px;
+    }
+}

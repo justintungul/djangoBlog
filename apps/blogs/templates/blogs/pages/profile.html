@@ -1,0 +1,50 @@
+{% load static %}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{% static 'blogs/img/about-bg.jpg' %}')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading small">
+          <h2>Profile</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="sidenav col-md-4 d-none d-md-block d-lg-block">
+      <ul>
+        <li><a href="#">Posts</a>
+        <ul>
+          <li><a href="/post/new">+ New Post</a>
+        </ul>
+        <li><a href="#">Following</a>
+      </ul>
+    </div>
+    <div class="col-md-8">
+
+      {% for post in data.posts %}
+        <div class="post-preview">
+          <a href="/post">
+            <h2 class="post-title">
+              {{post.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{post.headline}}
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">{{post.author.full_name | title}}</a>
+            on {{post.created_at | date:"F t, Y"}}</p>
+        </div>
+        <hr>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>

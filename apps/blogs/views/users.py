@@ -1,38 +1,46 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .helpers import sessions
+from ..models import *
+from . import renders 
 
-def index(request):
-    # user =  User.objects.get(id = request.session['user_id'])
-    # request.session['name'] = user.first_name.capitalize() + ' ' + user.last_name.capitalize()
-    # request.session['email'] = user.email
-    # context = {
-    #     'customers': Customer.objects.all(),
-    #     'projects': Project.objects.all()
-    # }
-    context = {
-        'route': 'blogs/pages/home.html'
-    }
-    return render(request, 'blogs/index.html', context)
+def create_user(request):
+    if request.method == 'POST':
+        userForm = UserForm(request.POST)
+        if userForm.is_valid():
+            # create and save user from cleaned form data
+            user = User(**userForm.cleaned_data)
+            user.create_password_hash()
+            user.save()
+            return redirect('/')
+        else:
+            # render form with errors
+            request.session['data'] = {'error': 'error'}
+            return renders.register(request)
 
-def about(request):
-    context = {
-        'route': 'blogs/pages/about.html'
-    }
-    return render(request, 'blogs/index.html', context)
+def signin_user(request):
+    if request.method == 'POST':
+        try:
+            user = User.objects.get(email = request.POST['email'])
+        except Exception as e:
+            print(str(e))
+            # messages.error(request, 'Unable to login')
+            return redirect('/signin')
 
-def post(request):
-    context = {
-        'route': 'blogs/pages/post.html'
-    }
-    return render(request, 'blogs/index.html', context)
+        if (user.verify_password_hash(request.POST['password'])):
+            sessions.create_user_session(request, user)
+            return redirect('/')
+        else:
+            # messages.error(request, 'Unable to login')
+            return redirect('/signin')
 
-def contact(request):
-    context = {
-        'route': 'blogs/pages/contact.html'
-    }
-    return render(request, 'blogs/index.html', context)
+def logout(request):
+    keys = []
+    
+    for key in request.session.keys():
+        keys.append(key)
 
-def login(request):
-    context = {
-        'route': 'blogs/pages/login.html'
-    }
-    return render(request, 'blogs/index.html', context)
+    for idx in range(len(keys)):
+        del request.session[keys[idx]]
+
+    # messages.success(request, 'You\'ve been logged out successfully!')
+    return redirect('/signin')

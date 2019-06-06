@@ -14,21 +14,41 @@
   
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="{% static 'blogs/vendor/bootstrap/css/bootstrap.min.css' %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- trumbowyg -->
+  <link href="{% static 'blogs/vendor/trumbowyg/dist/ui/trumbowyg.min.css' %}" rel="stylesheet">
 
-  <!-- Custom fonts for this template -->
+  <!-- fonts -->
   <link href="{% static 'blogs/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet">
   
-  <!-- Custom styles for this template -->
+  <!-- custom css -->
   <link href="{% static 'blogs/css/clean-blog.css' %}" rel="stylesheet">
+  <link href="{% static 'blogs/css/global.css' %}" rel="stylesheet">
+
+  {% if CSS_ROUTE %}
+    <link href="{% static CSS_ROUTE %}" rel="stylesheet">
+  {% endif %}
 
 </head>
 
 <body>
     {% include "blogs/components/navbar.html" %}
-    {% include route %}
+    {% include ROUTE %}
     {% include "blogs/components/footer.html" %}
-    {% include "blogs/components/bottom-scripts.html" %}
+    
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'blogs/vendor/jquery/jquery.min.js' %}"></script>
+  <!-- bootstrap -->
+  <script src="{% static 'blogs/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- trumbowyg -->
+  <script src="{% static 'blogs/vendor/trumbowyg/dist/trumbowyg.min.js' %}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'blogs/js/clean-blog.js' %}"></script>
+
+  {% if JS_ROUTE %}
+    <script src="{% static JS_ROUTE %}"></script>
+  {% endif %}
 </body>
 </html>
