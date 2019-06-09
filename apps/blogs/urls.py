@@ -25,3 +25,4 @@ urlpatterns = [
     url(r'^post/(?P<post_id>\d+)$', renders.post),
     url(r'^post/new$', renders.post_new),
     url(r'^post/submit$', posts.create_post),
+]
