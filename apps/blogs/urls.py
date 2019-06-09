@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^about$', renders.about),
     url(r'^contact$', renders.contact),
     url(r'^profile$', renders.profile_personal),
+    url(r'^profile/following$', renders.profile_following),
     url(r'^profile/(?P<user_id>\d+)$', renders.profile_public),
 
     # user routes

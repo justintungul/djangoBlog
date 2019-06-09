@@ -106,4 +106,18 @@ def profile_public(request, user_id):
         }
     }
     return render(request, 'blogs/index.html', context)
-    
+
+
+def profile_following(request):
+    following = User.objects.get(id=request.session['user_id']).following.all()
+    posts = Post.objects.filter(author__in=following).order_by('-created_at')
+    print(posts)
+
+    context = {
+        'ROUTE': 'blogs/pages/profile.html',
+        'CSS_ROUTE': 'blogs/css/pages/profile.css',
+        'data': {
+            'posts': posts
+        }
+    }
+    return render(request, 'blogs/index.html', context)

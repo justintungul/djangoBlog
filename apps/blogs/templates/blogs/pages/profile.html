@@ -21,7 +21,7 @@
     
     {% if data.user %}
       <ul>
-        {% if data.following == True %}
+        {% if data.following %}
           <li><a class="follow-btn" href="/profile/unfollow/{{data.user.id}}">Unfollow</a>
         {% else %}
           <li><a class="follow-btn" href="/profile/follow/{{data.user.id}}">Follow</a>
@@ -29,11 +29,11 @@
       </ul>
     {% else %}
       <ul>
-        <li><a href="#">Posts</a>
+        <li><a href="/profile">Posts</a>
         <ul>
           <li><a href="/post/new">+ New Post</a>
         </ul>
-        <li><a href="/posts/following">Following</a>
+        <li><a href="/profile/following">Following</a>
       </ul>
     {% endif %}
     </div>
