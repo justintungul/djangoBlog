@@ -46,13 +46,15 @@ def logout(request):
     return redirect('/signin')
 
 def profile_follow(request, user_id):
-    user = User.objects.get(id = request.session['user_id'])
-    user_to_follow = User.objects.get(id = user_id)
+    if 'user_id' in request.session:
+        user = User.objects.get(id = request.session['user_id'])
+        user_to_follow = User.objects.get(id = user_id)
 
-    user.following.add(user_to_follow)
-    user.save()
-
-    return redirect('/profile/' + user_id)
+        user.following.add(user_to_follow)
+        user.save()
+        return redirect('/profile/' + user_id)
+    else:
+        return redirect('/signin')
 
 def profile_unfollow(request, user_id):
     user = User.objects.get(id = request.session['user_id'])
