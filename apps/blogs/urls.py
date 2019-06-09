@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^profile/unfollow/(?P<user_id>\d+)$', users.profile_unfollow),
 
     # post
-    url(r'^post$', renders.post_sample),
+    url(r'^post/sample$', renders.post_sample),
     url(r'^post/(?P<post_id>\d+)$', renders.post),
     url(r'^post/new$', renders.post_new),
     url(r'^post/submit$', posts.create_post),
