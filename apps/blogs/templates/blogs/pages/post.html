@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('/{{ data.post.hero_image }}')">
+<header class="masthead" style="background-image: url('/media/{{ data.post.hero_image }}')">
 
   <div class="overlay"></div>
   <div class="container">
@@ -11,7 +11,7 @@
           <h1>{{data.post.title}}</h1>
           <h2 class="subheading">{{data.post.headline}}</h2>
           <span class="meta">Posted by
-            <a href="#">{{data.post.author.full_name | title}}</a>
+            <a href="/profile/{{data.post.author.id}}">{{data.post.author.full_name | title}}</a>
             on {{data.post.created_at | date:"F j, Y"}}</span>
         </div>
       </div>
