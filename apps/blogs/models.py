@@ -23,6 +23,15 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     following = models.ManyToManyField("self", blank=True, related_name="followers", symmetrical = False)
 
+    # admin
+    def __str__(self):
+        return self.full_name.title()
+
+    def upper_case_name(self):
+        return self.full_name.title()
+    upper_case_name.short_description = 'Name'
+    
+    # user methods
     def create_password_hash(self):
         self.password = bcrypt.hashpw(self.password.encode(), bcrypt.gensalt()).decode('utf-8')
         return
@@ -45,3 +54,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, related_name='posts', on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    # admin
+    def __str__(self):
+        return self.title.title()
