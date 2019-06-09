@@ -87,8 +87,8 @@ def profile_public(request, user_id):
             following = True
 
     context = {
-        'ROUTE': 'blogs/pages/profile_public.html',
-        'CSS_ROUTE': 'blogs/css/pages/profile_public.css',
+        'ROUTE': 'blogs/pages/profile.html',
+        'CSS_ROUTE': 'blogs/css/pages/profile.css',
         'data': {
             'user': user,
             'posts': user.posts.all(),
