@@ -40,7 +40,7 @@ class User(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length = 255)
     headline = models.CharField(max_length = 255)
-    hero_image = models.ImageField(upload_to = 'media/pictures')
+    hero_image = models.ImageField(upload_to = 'pictures')
     body = models.TextField()
     author = models.ForeignKey(User, related_name='posts', on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
