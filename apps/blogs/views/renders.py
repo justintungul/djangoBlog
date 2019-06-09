@@ -62,8 +62,7 @@ def register(request):
     return render(request, 'blogs/index.html', context)
 
 def profile_personal(request):
-    user = User.objects.get(id = request.session['user_id'])
-    posts = Post.objects.filter(author = user)
+    posts = User.objects.get(id = request.session['user_id']).posts.all()
     # print(posts.__dict__)
     context = {
         'ROUTE': 'blogs/pages/profile.html',
@@ -79,21 +78,20 @@ def profile_personal(request):
 
 def profile_public(request, user_id):
     user = User.objects.get(id = user_id)
-    posts = Post.objects.filter(author = user)
-    following = False
+    following = None
 
-    if user == User.objects.get(id = request.session['user_id']):
-        return redirect('/profile')
-# 
-    if User.objects.get(id = request.session['user_id']).following.all().filter(id = user.id):
-        following = True
+    if 'user_id' in request.session:
+        if user == User.objects.get(id = request.session['user_id']):
+            return redirect('/profile')
+        elif User.objects.get(id = request.session['user_id']).following.all().filter(id = user.id):
+            following = True
 
     context = {
         'ROUTE': 'blogs/pages/profile_public.html',
         'CSS_ROUTE': 'blogs/css/pages/profile_public.css',
         'data': {
             'user': user,
-            'posts': posts,
+            'posts': user.posts.all(),
             'following': following
         }
     }
