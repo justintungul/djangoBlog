@@ -3,16 +3,6 @@ from django import forms
 
 import bcrypt
 
-class UserForm(forms.Form):
-    full_name = forms.CharField(max_length = 100)
-    email = forms.EmailField(max_length = 100)
-    password = forms.CharField(max_length = 32, min_length = 8)
-
-class PostForm(forms.Form):
-    title = forms.CharField(max_length = 255)
-    headline = forms.CharField(max_length = 255)
-    body = forms.CharField()
-
 # Create your models here.
 class User(models.Model):
     # DEFAULT_ROLE = 1
@@ -50,6 +40,7 @@ class User(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length = 255)
     headline = models.CharField(max_length = 255)
+    hero_image = models.ImageField(upload_to = 'pictures')
     body = models.TextField()
     author = models.ForeignKey(User, related_name='posts', on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -58,3 +49,15 @@ class Post(models.Model):
     # admin
     def __str__(self):
         return self.title.title()
+
+# Forms
+class UserForm(forms.Form):
+    full_name = forms.CharField(max_length = 100)
+    email = forms.EmailField(max_length = 100)
+    password = forms.CharField(max_length = 32, min_length = 8)
+
+class PostForm(forms.Form):
+    title = forms.CharField(max_length = 255)
+    headline = forms.CharField(max_length = 255)
+    body = forms.CharField()
+    hero_image = forms.ImageField()

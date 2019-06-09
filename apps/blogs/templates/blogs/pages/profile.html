@@ -18,6 +18,16 @@
 <div class="container">
   <div class="row">
     <div class="sidenav col-md-4 d-none d-md-block d-lg-block">
+    
+    {% if data.user %}
+      <ul>
+        {% if data.following == True %}
+          <li><a class="follow-btn" href="/profile/unfollow/{{data.user.id}}">Unfollow</a>
+        {% else %}
+          <li><a class="follow-btn" href="/profile/follow/{{data.user.id}}">Follow</a>
+        {% endif %}
+      </ul>
+    {% else %}
       <ul>
         <li><a href="#">Posts</a>
         <ul>
@@ -25,6 +35,7 @@
         </ul>
         <li><a href="#">Following</a>
       </ul>
+    {% endif %}
     </div>
     <div class="col-md-8">
 
@@ -40,7 +51,7 @@
           </a>
           <p class="post-meta">Posted by
             <a href="#">{{post.author.full_name | title}}</a>
-            on {{post.created_at | date:"F t, Y"}}</p>
+            on {{post.created_at | date:"F j, Y"}}</p>
         </div>
         <hr>
       {% endfor %}

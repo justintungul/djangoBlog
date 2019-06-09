@@ -4,8 +4,7 @@ from . import renders
 
 def create_post(request):
     if request.method == 'POST':
-        postForm = PostForm(request.POST)
-        print(postForm)
+        postForm = PostForm(request.POST, request.FILES)
         if postForm.is_valid():
             post = Post(**postForm.cleaned_data)
             post.author = User.objects.get(id = request.session['user_id'])
