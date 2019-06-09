@@ -1,8 +1,31 @@
 from django.shortcuts import render, redirect
+
 from .helpers import sessions
 from ..models import *
-from . import renders 
 
+
+# Render methods
+def signin(request):
+    context = {
+        'ROUTE': 'blogs/pages/signin.html',
+        'CSS_ROUTE': 'blogs/css/pages/signin.css'
+    }
+    return render(request, 'blogs/index.html', context)
+
+def register(request):
+    context = {
+        'ROUTE': 'blogs/pages/register.html',
+        'CSS_ROUTE': 'blogs/css/pages/register.css',
+        'test': 'test'
+    }
+    if 'data' in request.session:
+        context['data'] = request.session['data']
+        del request.session['data']
+
+    print(context)
+    return render(request, 'blogs/index.html', context)
+
+# Process methods
 def create_user(request):
     if request.method == 'POST':
         userForm = UserForm(request.POST)
@@ -15,7 +38,7 @@ def create_user(request):
         else:
             # render form with errors
             request.session['data'] = {'error': 'error'}
-            return renders.register(request)
+            return redirect('/register')
 
 def signin_user(request):
     if request.method == 'POST':
@@ -44,23 +67,3 @@ def logout(request):
 
     # messages.success(request, 'You\'ve been logged out successfully!')
     return redirect('/signin')
-
-def profile_follow(request, user_id):
-    if 'user_id' in request.session:
-        user = User.objects.get(id = request.session['user_id'])
-        user_to_follow = User.objects.get(id = user_id)
-
-        user.following.add(user_to_follow)
-        user.save()
-        return redirect('/profile/' + user_id)
-    else:
-        return redirect('/signin')
-
-def profile_unfollow(request, user_id):
-    user = User.objects.get(id = request.session['user_id'])
-    user_to_unfollow = User.objects.get(id = user_id)
-
-    user.following.remove(user_to_unfollow)
-    user.save()
-
-    return redirect('/profile/' + user_id)
