@@ -9,9 +9,6 @@ def index(request):
             'posts': Post.objects.all().order_by('-created_at')
         }
     }
-    # get all blogs
-    # add to context
-    # context.update({'blogs': blogs})
     return render(request, 'blogs/index.html', context)
 
 def about(request):
@@ -20,9 +17,22 @@ def about(request):
     }
     return render(request, 'blogs/index.html', context)
 
-def post(request):
+def post(request, post_id):
+    post = Post.objects.get(id=post_id)
     context = {
-        'ROUTE': 'blogs/pages/post.html'
+        'ROUTE': 'blogs/pages/post.html',
+        'data': {
+            'post': post
+        }
+    }
+    return render(request, 'blogs/index.html', context)
+
+def post_sample(request):
+    context = {
+        'ROUTE': 'blogs/pages/post_sample.html',
+        'data': {
+            'post': post
+        }
     }
     return render(request, 'blogs/index.html', context)
 
@@ -62,7 +72,7 @@ def register(request):
     return render(request, 'blogs/index.html', context)
 
 def profile_personal(request):
-    posts = User.objects.get(id = request.session['user_id']).posts.all()
+    posts = User.objects.get(id = request.session['user_id']).posts.all().order_by('-created_at')
     # print(posts.__dict__)
     context = {
         'ROUTE': 'blogs/pages/profile.html',
@@ -91,7 +101,7 @@ def profile_public(request, user_id):
         'CSS_ROUTE': 'blogs/css/pages/profile.css',
         'data': {
             'user': user,
-            'posts': user.posts.all(),
+            'posts': user.posts.all().order_by('-created_at'),
             'following': following
         }
     }

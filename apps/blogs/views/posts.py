@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from ..models import *
 from . import renders 
 
+# File upload 
+# https://simpleisbetterthancomplex.com/tutorial/2016/08/01/how-to-upload-files-with-django.html
 def create_post(request):
     if request.method == 'POST':
         postForm = PostForm(request.POST, request.FILES)
